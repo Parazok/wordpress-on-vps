@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+
+  wordpress_site_name:
+    image: wordpress:6.1.1-apache
+    container_name: wordpress_site_name
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: password
+      # WORDPRESS_DB_NAME:
+      # WORDPRESS_TABLE_PREFIX:
+    ports:
+      - 8001:80
+    volumes:
+      - ./data:/var/www/html
+      - "./php.ini:/usr/local/etc/php/conf.d/custom.ini"
+    depends_on:
+      - mariadb
+    networks:
+      - internal 
+      
